@@ -3,8 +3,10 @@ from flask import Flask, redirect, render_template, request
 
 app = Flask(__name__)
 
+# Linking database
 db = SQL("sqlite:///froshims.db")
 
+# Valid sports for registration
 SPORTS = [
     "Dodgeball",
     "Flag Football",
@@ -40,6 +42,7 @@ def register():
     return redirect("/registrants")
 
 
+# List of all the students who registered
 @app.route("/registrants")
 def registrants():
     registrants = db.execute("SELECT * FROM registrants")
